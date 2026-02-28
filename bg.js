@@ -91,7 +91,7 @@ function initTypewriter() {
     const typeSpan = document.querySelector('.type-text');
     if (!typeSpan) return;
 
-    const words = ["Développeur Web", "UI/UX Designer", "FF Player"];
+    const words = ["Développeur Web", "UI/UX Designer", "Freelancer"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
