@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #d9e2ec 0%, #cbd5e1 100%);
+            font-family: 'Outfit', sans-serif;
+            padding: 45px 30px;
+            color: #1e2f3e;
+        }
+
+        /* Conteneur principal avec effet flottant */
+        .cv-master {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255,255,255,0.4);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* En-tête avec fond dégradé doux */
+        .hero-section {
+            background: linear-gradient(105deg, #1b3b4f 0%, #2a5f6e 100%);
+            padding: 35px 45px 30px 45px;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .hero-text .highlight {
+            font-size: 1rem;
+            font-weight: 500;
+            background: rgba(255,255,240,0.2);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-text .bio {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .photo-module {
+            text-align: center;
+        }
+        .photo-ring {
+            width: 140px;
+            height: 140px;
+            background: rgba(255,255,245,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+            transition: 0.2s;
+        }
+        .photo-inner {
+            width: 125px;
+            height: 125px;
+            background: #f1f6f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+            border: 2px solid white;
+            transition: transform 0.2s ease;
+        }
+        .photo-inner:hover {
+            transform: scale(1.02);
+        }
+        .photo-inner i {
+            font-size: 4.2rem;
+            color: #658e9e;
+        }
+        .photo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .upload-link {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            background: rgba(255,255,245,0.2);
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .upload-link:hover {
+            background: #f4cda6;
+            color: #1e3b44;
+        }
+        #heroPhotoInput {
+            display: none;
+        }
+
+        /* layout en deux colonnes élégant */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 38% 62%;
+        }
+
+        /* colonne latérale gauche */
+        .left-details {
+            background: #fefcf7;
+            padding: 35px 28px;
+            border-right: 1px solid #ece6dc;
+        }
+
+        .info-card {
+            margin-bottom: 32px;
+        }
+        .info-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #b86f2c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: #3b5c6e;
+            transition: 0.2s;
+        }
+        .contact-row:hover {
+            transform: translateX(4px);
+            color: #b86f2c;
+        }
+        .contact-row i {
+            width: 28px;
+            font-size: 1rem;
+            color: #c2813a;
+        }
+        .lang-block div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+        .lang-name {
+            font-weight: 600;
+        }
+        .lang-level {
+            background: #f0e7db;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #a45d2e;
+        }
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .interest-tag {
+            background: white;
+            border: 1px solid #e0cfbc;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #8a5a3a;
+            transition: 0.2s;
+        }
+        .interest-tag:hover {
+            background: #e5985e20;
+            border-color: #e5985e;
+            transform: translateY(-2px);
+        }
+
+        /* droite contenu principal */
+        .right-content {
+            background: white;
+            padding: 35px 40px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1b4e62;
+            border-left: 5px solid #e5985e;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .about-p {
+            background: #fefaf5;
+            padding: 18px 20px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #3f5e6b;
+            transition: 0.2s;
+        }
+        .about-p:hover {
+            background: #fff7ef;
+        }
+        .exp-card {
+            margin-bottom: 24px;
+            padding: 8px 0;
+            transition: 0.2s;
+        }
+        .exp-card:hover {
+            background: #fefcf8;
+            border-radius: 20px;
+            padding-left: 12px;
+        }
+        .exp-title {
+            font-weight: 800;
+            font-size: 1rem;
+            color: #1c4e63;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .exp-date {
+            font-size: 0.7rem;
+            background: #f0ede8;
+            padding: 3px 12px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        .exp-sub {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #c2813a;
+            margin: 5px 0 8px 0;
+        }
+        .exp-desc {
+            font-size: 0.85rem;
+            color: #435f6b;
+            padding-left: 20px;
+            list-style: none;
+        }
+        .exp-desc li {
+            margin-bottom: 6px;
+            display: flex;
+            gap: 8px;
+        }
+        .exp-desc li i {
+            color: #e5985e;
+            font-size: 0.7rem;
+            margin-top: 4px;
+        }
+        .skill-set {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .skill-pill {
+            background: #f2efe9;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #476b7a;
+            transition: all 0.2s;
+            cursor: default;
+        }
+        .skill-pill:hover {
+            background: #e5985e;
+            color: white;
+            transform: translateY(-2px);
+        }
+        hr {
+            margin: 22px 0;
+            border: 0;
+            height: 1px;
+            background: #ece3d9;
+        }
+        footer {
+            background: #f9f6ef;
+            padding: 16px 30px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #7f9aa8;
+            border-top: 1px solid #ece3da;
+        }
+        @media (max-width: 800px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            .left-details {
+                border-right: none;
+                border-bottom: 1px solid #ece6dc;
+            }
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            body {
+                padding: 20px;
+            }
+            .right-content {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="cv-master">
+    <!-- Bannière avec identité et photo -->
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>RASOLONDRAIBE <br> Fredo</h1>
+            <div class="highlight"><i class="fas fa-code"></i> Développeur Web Junior · Passionné par le code</div>
+            <div class="bio"><i class="fas fa-map-marker-alt"></i> Fianarantsoa, Andrainjato · <i class="fas fa-calendar-alt"></i> Jeune développeur motivé</div>
+        </div>
+        <div class="photo-module">
+            <div class="photo-ring">
+                <div class="photo-inner" id="heroPhotoInner">
+                    <img src="saryfredo.jpg" alt="RASOLONDRAIBE Fredo">
+                </div>
+            </div>
+            <label for="heroPhotoInput" class="upload-link"><i class="fas fa-camera-retro"></i></label>
+            <input type="file" id="heroPhotoInput" accept="image/jpeg, image/png, image/jpg">
+        </div>
+    </div>
+
+    <div class="two-columns">
+        <!-- Partie gauche : contact / langues / centres d'intérêt / honneur -->
+        <div class="left-details">
+            <div class="info-card">
+                <h3><i class="fas fa-address-book"></i> CONTACT</h3>
+                <div class="contact-row"><i class="fas fa-mobile-alt"></i> +261 34 49 478 74</div>
+                <div class="contact-row"><i class="fas fa-envelope"></i> fredotobihy@gmail.com</div>
+                <div class="contact-row"><i class="fab fa-github"></i> github.com/fredotobihy-web</div>
+                <div class="contact-row"><i class="fas fa-map-marker-alt"></i> Fianarantsoa, Andrainjato</div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-globe-europe"></i> LANGUES</h3>
+                <div class="lang-block">
+                    <div><span class="lang-name">Malagasy</span><span class="lang-level">Maternel</span></div>
+                    <div><span class="lang-name">Français</span><span class="lang-level">Intermédiaire / Bon niveau</span></div>
+                    <div><span class="lang-name">Anglais</span><span class="lang-level">Notions de base</span></div>
+                </div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-palette"></i> CENTRES D'INTÉRÊT</h3>
+                <div class="interests">
+                    <span class="interest-tag"><i class="fas fa-music"></i> Music</span>
+                    <span class="interest-tag"><i class="fas fa-bicycle"></i> Cyclisme</span>
+                    <span class="interest-tag"><i class="fas fa-chess"></i> Échecs</span>
+                    <span class="interest-tag"><i class="fas fa-pen-fancy"></i> UX Writing</span>
+                    <span class="interest-tag"><i class="fas fa-futbol"></i> Football</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-award"></i> HONNEUR</h3>
+                <div class="contact-row"><i class="fas fa-microchip"></i> Certification en Maintenance en informatique</div>
+            </div>
+        </div>
+
+        <!-- Partie droite : profil, parcours, éducation, compétences -->
+        <div class="right-content">
+            <div class="section">
+                <h2><i class="fas fa-user-astronaut"></i> À propos</h2>
+                <div class="about-p">
+                    Jeune développeur web junior basé à Fianarantsoa (Andrainjato), passionné par la création de sites web modernes et fonctionnels. 
+                    Autodidacte et curieux, je cherche à mettre mes compétences au service de projets innovants tout en continuant à apprendre chaque jour.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-briefcase"></i> Parcours professionnel</h2>
+                <div class="exp-card">
+                    <div class="exp-title">
+                        <span>Développeur Web Junior</span>
+                        <span class="exp-date">2024 – 2026</span>
+                    </div>
+                    <div class="exp-sub">Projets personnels & Freelance · Fianarantsoa</div>
+                    <ul class="exp-desc">
+                        <li><i class="fas fa-chevron-right"></i> Création de sites vitrines et portfolios en HTML, CSS et JavaScript.</li>
+                        <li><i class="fas fa-chevron-right"></i> Développement de petites applications web pour découvrir les bonnes pratiques.</li>
+                        <li><i class="fas fa-chevron-right"></i> Collaboration sur des projets open source et participation à des ateliers de code.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-graduation-cap"></i> Éducation</h2>
+                <div class="exp-card">
+                    <div class="exp-title">
+                        <span>CEPE</span>
+                        <span class="exp-date">Obtenu</span>
+                    </div>
+                    <div class="exp-sub">Ambalavao</div>
+                </div>
+                <div class="exp-card">
+                    <div class="exp-title">
+                        <span>BEPC</span>
+                        <span class="exp-date">Obtenu</span>
+                    </div>
+                    <div class="exp-sub">Ambalavao</div>
+                </div>
+                <div class="exp-card">
+                    <div class="exp-title">
+                        <span>Baccalauréat</span>
+                        <span class="exp-date">2020 – 2023</span>
+                    </div>
+                    <div class="exp-sub">Ambalavao · Mention Passable</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-microchip"></i> Stack technique</h2>
+                <div class="skill-set">
+                    <span class="skill-pill"><i class="fab fa-html5"></i> HTML5</span>
+                    <span class="skill-pill"><i class="fab fa-css3-alt"></i> CSS3</span>
+                    <span class="skill-pill"><i class="fab fa-python"></i> Python</span>
+                    <span class="skill-pill"><i class="fas fa-code"></i> C++</span>
+                    <span class="skill-pill"><i class="fab fa-js"></i> JavaScript (en apprentissage)</span>
+                </div>
+            </div>
+            <hr>
+            <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 0.75rem; color:#b7794a;">
+                <span><i class="fas fa-check-circle"></i> Autodidacte</span>
+                <span><i class="fas fa-heart"></i> Passionné par le code</span>
+                <span><i class="fas fa-search"></i> En recherche d'opportunités</span>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <i class="far fa-copyright"></i> 2026 RASOLONDRAIBE Fredo · <i class="fas fa-envelope"></i> fredotobihy@gmail.com · <i class="fas fa-mobile-alt"></i> +261 34 49 478 74
+    </footer>
+</div>
+
+<script>
+    const heroPhotoInput = document.getElementById('heroPhotoInput');
+    const heroPhotoInner = document.getElementById('heroPhotoInner');
+
+    heroPhotoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                heroPhotoInner.innerHTML = '';
+                const newImg = document.createElement('img');
+                newImg.src = ev.target.result;
+                newImg.alt = "Fredo RASOLONDRAIBE";
+                newImg.style.width = '100%';
+                newImg.style.height = '100%';
+                newImg.style.objectFit = 'cover';
+                heroPhotoInner.appendChild(newImg);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            heroPhotoInner.innerHTML = '<i class="fas fa-user-check"></i>';
+        }
+    });
+</script>
+</body>
+</html>
